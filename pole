@@ -1,22 +1,114 @@
-print("a - plaskie b - bryły")
-inp = input("a / b ?")
-if "a" == inp:
-    print('''
-    a - pp kwadratu
-    b - pp prostokata
-    ...
-    ''')
-elif "b" == inp:
-    print('''
-    a - pp szescianu
-    b - pp prostopadloscianu
-    ...
-          
-    ''')
-    inp = input("?")
-    if inp == "a":
-        a = float(input("a = "))
-        print(f"ppSzecianu dla a={a} = {a**2*6}")
+import math
+math.pi
+print("Wybierz figurę")
+print("a - figury płaskie")
+print("b - bryły ")
 
-else:
-    print("Nie ma takiej komendy")
+inp = input("a / b ? ")
+
+if inp == "a":
+    print('''
+    Wybierz figurę:
+    a - pole kwadratu
+    b - pole prostokąta
+    c - pole równoległoboku
+    d - pole trapezu
+    e - pole trójkąta
+    f - pole trójkąta równobocznego
+    g - pole koła
+    h - pole rombu (podstawa × wysokość)
+    i - pole rombu (przekątne)
+    ''')
+
+    inp = input("Wybór: ")
+
+    if inp == "a":
+        a = float(input("Podaj bok kwadratu: "))
+        print(f"Pole kwadratu to {a*2}")
+
+    if inp == "b":
+        a = float(input("Podaj podstawę prostokąta: "))
+        b = float(input("podaj bok prostokąta: "))
+        print(f"Pole prostokąta to {a*b}")
+
+    if inp == "c":
+        a = float(input("Podaj podtawę równoległoboku: "))
+        h = float(input("Podaj wysokość równoległoboku: "))
+        print(f"Pole równoległoboku to {a*h}")
+
+    if inp == "d":
+        a =float(input("Podaj podtawę a trapezu: "))
+        b =float(input("Podaj podtawę b trapezu: "))
+        h =float(input("Podaj wysokość trapezu: "))
+        print(f"Pole trapezu to {((a+b)*h)/2}")
+
+    if inp == "e":
+        a =float(input("Podaj podtawę trójkąta: "))
+        h =float(input("Podaj wysokość trójkąta: "))
+        print(f"Pole trójkąta to {(a*h)/2}")
+        
+    if inp == "f":
+        a =float(input("Podaj podtawę trójkąta równobocznego: "))
+        print(f"Pole trójkąta równobocznego to {(a**2*math.sqrt(3))/4}")
+
+    if inp == "g":
+        r =float(input("Podaj promień okręgu: "))
+        print(f"Pole koła to {math.pi*r**2}")
+
+    if inp == "h":
+        a =float(input("Podaj podtawę rombu: "))
+        h =float(input("Podaj wysokość rombu: "))
+        print(f"Pole rombu to {a*h}")
+
+    if inp == "i":
+        f =float(input("Podaj przekątna f rombu: "))
+        e =float(input("Podaj przekątna e rombu: "))      
+        print(f"Pole rombu to {(e*f)/2}")
+
+if inp == "b":
+    print('''
+    Wybierz figurę:
+    a - Pole powierzchni sześcianu
+    b - Pole powierzchni prostopadłościanu
+    c - Pole powierzchni graniastosłupa
+    d - Pole powierzchni ostrosłupa
+    e - Pole powierzchni walca
+    f - Pole powierzchni stożka
+    g - Pole powierzchni kuli
+    ''')
+
+    inp = input("Wybór: ")
+
+    if inp == "a":
+        a =float(input("Podaj krawędź sześcianu:  "))
+        print(f"Pole powierzchni sześcianu to {6*a**2}")
+
+    if inp == "b":
+        a =float(input("Podaj krawędź a prostopadłościanu:  "))
+        b =float(input("Podaj krawędź b prostopadłościanu:  "))
+        c =float(input("Podaj krawędź c prostopadłościanu:  "))
+        print(f"Pole powierchni prostopadłościanu to {2*(a*b)+2*(a*c)+2*(b*c)}")
+
+    if inp == "c":
+        Pp =float(input("Podaj pole podstawy granistosłupa:  "))
+        Pb =float(input("Podaj pole powierzchni bocznej graniastosłupa:  "))
+        print(f"Pole powierzchni graniastosłupa to {2*Pp+Pb}")
+
+    if inp == "d":
+        Pp =float(input("Podaj pole podstawy ostrosłupa:  "))
+        Pb =float(input("Podaj pole powierzchni bocznej ostrosłupa:  "))
+        print(f"Pole powierzchni ostrosłupa to {Pp+Pb}")
+
+    if inp =="e":
+         r =float(input("Podaj promień podstawy walca:  "))
+         H =float(input("Podaj wysokość walca:  "))
+         print(f"Pole walca to {2*math.pi*r**2+2*math.pi*r*H}")
+
+    if inp =="f":
+        r =float(input("Podaj promień podstawy stożka: "))
+        l =float(input("Podaj długóś tworzącą stożek: "))
+        print(f"Pole powierchni stożka to {math.pi*r**2+math.pi*r*l}")
+
+    if inp =="g":
+        r =float(input("Podaj promień podstawy kuli: "))
+        print(f"Pole powierzchni kuli to {4*math.pi*r**2}")
