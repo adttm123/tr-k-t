@@ -3,7 +3,7 @@ import math
 print("Wybierz figurę")
 print("a - figury płaskie")
 print("b - bryły ")
-print("c - inne")
+print("c - inne wzory")
 
 inp = input("a / b / c ? ")
 
