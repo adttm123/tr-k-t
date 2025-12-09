@@ -15,7 +15,11 @@ LVL = [0, 50]
 niga = 10
 nig = 10
 Ekwipunek = [0, 0]
-
+PA = 1
+PF = 1
+PK = 1
+PL = 1
+PKa = 1
 print("--- WITAMY W GRZE! ---")
 time.sleep(1)
 
@@ -26,7 +30,7 @@ while postac[0] > 0:
     Scylla = ["Scylla", random.randint(200, 300), random.randint(40, 60)]
     los = random.randint(1, 100)
 
-    if los <= 40:
+    if los <= 50:
         potwor = szczur_morski
     elif los <= 80:          
         potwor = goblin
@@ -34,8 +38,8 @@ while postac[0] > 0:
         potwor = ultra_goblin
     else:                    
         potwor = Scylla
-    Siegebreaker_Assault_Beast = ["Siegebreaker_Assault_Beast", 200, random.randint(1000, 8000)]
-    Diablo = ["Diablo",400, random.randint(8000, 80000)]
+    Siegebreaker_Assault_Beast = ["Siegebreaker_Assault_Beast", random.randint(1000, 8000), 200]
+    Diablo = ["Diablo", random.randint(8000, 80000), 400]
     lo = random.randint(1,100)
     if lo <= 99:
         boss = Siegebreaker_Assault_Beast
@@ -75,7 +79,7 @@ while postac[0] > 0:
                 time.sleep(0.5)
 
             if potwor[1] <= 0 and postac[0] > 0:
-                zdobyte = random.randint(10, 40)
+                zdobyte = random.randint(10, 100)
                 zdobyt = random.randint(2, 10)
                 pieniadze += zdobyte
                 LVL[0] += zdobyt
@@ -84,7 +88,28 @@ while postac[0] > 0:
                     LVL[0] -= LVL[1]
                     LVL[1] += 5
                 print(f"\nPokonałeś {potwor[0]}! Zdobywasz {zdobyte} złotych i {zdobyt} expa")
-                time.sleep(0.5)
+
+                if potwor[0] == "Ultra goblin":
+                    l = random.randint(1,100)
+                    if l <= 10 and PA > 0:
+                            print("Zdobyłeś również pierścień Ataku. +20 do Ataku")
+                            postac[1] += 20
+                            PA -= 1
+                            time.sleep(0.5)
+                    elif l >=99 and PF > 0:
+                                    print("Zdobyłeś również pierścień Antymaga. +100 do Ataku")
+                                    postac[1] += 100
+                                    PF -= 1
+                                    time.sleep(0.5)
+                elif potwor[0] == "Scylla":
+                    g = random.randint(1,100)
+                    if g == 100:
+                        if PK > 0:
+                            print("Zdobyłeś również Kołczan Prawilności. +100 do MAXHP")
+                            MAXHP += 100
+                            PK -= 1
+                            time.sleep(0.5)
+
                 print(f"Masz teraz {pieniadze} złotych.")
                 time.sleep(0.5)
                 print(f"LVL:{EXP}")
@@ -252,22 +277,63 @@ while postac[0] > 0:
             continue
     elif inp == "c":
         if EXP < 20:
-            print("Muszi mieć 20 LVL aby odblokować walkę z BOSSEM")
+            print("Musisz mieć 20 LVL aby odblokować walkę z BOSSEM")
             time.sleep(0.5)
         else:
             while boss[1] > 0 and postac[0] > 0:
                 print(f"Twoje HP: {postac[0]}/{MAXHP}  HP Bossa: {boss[1]}")
-                print(f"Ekwipunek: Eliksir żyica:{Ekwipunek[0]} Ulepszony Eliksir życia{Ekwipunek[1]}")
+                print(f"Ekwipunek: Eliksir życia:{Ekwipunek[0]} Ulepszony Eliksir życia{Ekwipunek[1]}")
                 print("\nAtak - a")
                 print("Ekwipunek - e")
                 inp = input("> ")
                 
                 if inp == "a":
-                    postac[0] -= boss[2]
-                    boss[1] -= postac[1]
-                    print(f"Boss zadał ci {boss[2]} dmg  Ty: {postac[1]}")
+                        print(f"\n--- WALKA Z {boss[0]} ---")
+                        while boss[1] > 0 and postac[0] > 0:
+                            time.sleep(0.5)
+                            print(f"Twoje HP: {postac[0]}")
+                            print(f"HP {boss[0]}: {boss[1]}")
+                            postac[0] -= boss[2]
+                            boss[1] -= postac[1]
+                            time.sleep(0.5)
+                        if boss[1] <= 0 and postac[0] > 0:
+                                zdoby = random.randint(100, 1000)
+                                zdob = random.randint(20, 100)
+                                pieniadze += zdoby
+                                LVL[0] += zdob
+                                if LVL[0] >= LVL[1]:
+                                    EXP += 1
+                                    LVL[0] -= LVL[1]
+                                    LVL[1] += 5
+                                print(f"\nPokonałeś {boss[0]}! Zdobywasz {zdoby} złotych i {zdob} expa")
+                                if boss[0] == "Siegebreaker_Assault_Beast":
+                                    k = random.randint(1,100)
+                                    if k <= 10 and PL > 0:
+                                            print("Zdobyłeś również pierścień Lemurów. +200 do Ataku")
+                                            postac[1] += 200
+                                            PL -= 1
+                                            time.sleep(0.5)
+                                    elif k >=99 and PKa > 0:
+                                                    print("Zdobyłeś również pierścień Kastiego. +1000 do Ataku")
+                                                    postac[1] += 1000
+                                                    PKa -= 1
+                                                    time.sleep(0.5)
+                                elif boss[0] == "Diablo":
+                                            print("--- GRATULACJE WYGRAŁEŚ!!! ---")
+                                            print("Grę tworzyli:")
+                                            print("Kod:Adam")
+                                            print("Grafika:Adam")
+                                            print("Dzwięk:Adam")
+                                            print("Tłumaczenie:Adam")
+                                            print("Audiodeskrypcja:Adam")
+                                            print("Reżyser:Adam")
+                                            print("Redaktor:Adam")
+                                            print("Pomysłodawca:Adam")
+                                            print("Deco:Adam")
+                                            print("Lektor:Adam")
+                                            print("Hm:Adam")
                 elif inp == "e":
-                    print("Eliksir żyica - a")
+                    print("Eliksir życia - a")
                     print("Ulepszony Eliksir życia - b")
                     inp = input("> ")
                     if inp == "a" and Ekwipunek[0] > 0:
@@ -281,7 +347,4 @@ while postac[0] > 0:
                         postac[0] = min(postac[0], MAXHP)
                         print("Użyto Ulepszonego Elikiru życia! +80 HP")
                     else:
-                        print("Brak potek lub zła opcja!")
-
-
-            
+                        print("Brak potek lub zła opcja!")           
